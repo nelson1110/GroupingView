@@ -1,6 +1,9 @@
 # GroupingViewSample
 制作类似联系人页面所需要的Slider，和用来给recyclerview进行分组的ItemDecoration
-##1. SliderView
+## 最基本的效果图，效果图比较low
+<img src="image/screen.png" width="40%" height="40%"/>
+
+## 1. SliderView
 简介：这是一个列表view，继承自Linearlayout，可实现水平或垂直布局，主要作用是当手指划过或点击某个里面的item的时候会有相应的回调
 ```kotlin
 interface ItemListener {
@@ -66,7 +69,7 @@ slider.setItemListener(object : SliderView.ItemListener{
 
         })
 ```
-##2. GroupDecoration
+## 2. GroupDecoration
 简介：可以自己控制列表的分组规则和分组标题的样式，而且可以用xml绘制分组标题
 用法：
 * 像所有其他的ItemDecoration一样，add到recyclerview上就可以了，主要需要实现下面几个方法
