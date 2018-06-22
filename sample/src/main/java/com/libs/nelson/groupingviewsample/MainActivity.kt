@@ -19,10 +19,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.grouping_view)
-        val paint = Paint()
-        paint.color = Color.BLACK
-        paint.strokeWidth =2f
-        paint.textSize = 100f
 
 
         list.layoutManager = LinearLayoutManager(this)
