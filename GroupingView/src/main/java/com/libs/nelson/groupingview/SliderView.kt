@@ -17,22 +17,6 @@ class SliderView : LinearLayout {
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        mAdapter?.getItemDataList()?.forEach {
-            try {
-                val item = LayoutInflater.from(context).inflate(mAdapter?.getItemLayout()!!,null)
-                makeClickEvent(item,it)
-                mAdapter?.onBindItem(item,it)
-                addView(item)
-            }catch (e : Exception){
-                throw Exception("layout not available exception")
-            }
-
-        }
-    }
-
-
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
 
         ev?.let {
@@ -68,7 +52,17 @@ class SliderView : LinearLayout {
 
     fun setAdapter(adapter: SliderAdapter){
         mAdapter = adapter
-        invalidate()
+        removeAllViews()
+        mAdapter?.getItemDataList()?.forEach {
+            try {
+                val item = LayoutInflater.from(context).inflate(mAdapter?.getItemLayout()!!,null)
+                makeClickEvent(item,it)
+                mAdapter?.onBindItem(item,it)
+                addView(item)
+            }catch (e : Exception){
+                throw Exception("layout not available exception")
+            }
+        }
     }
 
     fun setItemListener(listener: ItemListener){
