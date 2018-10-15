@@ -34,7 +34,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 ```groovy
 	dependencies {
-	        implementation 'com.github.nelson1110:GroupingViewSample:Tag'
+	        implementation 'com.github.nelson1110:GroupingViewSample:v1.0.0'
 	}
 ```
 
