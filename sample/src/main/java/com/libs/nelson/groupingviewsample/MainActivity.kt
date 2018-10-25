@@ -2,9 +2,9 @@ package com.libs.nelson.groupingviewsample
 
 import android.graphics.Color
 import android.graphics.Paint
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.grouping_view)
 
 
-        list.layoutManager = LinearLayoutManager(this)
+        list.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         list.adapter = TestAdapter()
 
         list.addItemDecoration(object : GroupDecoration(){
