@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-class TestAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<TestAdapter.TestViewHolder>() {
+class TestAdapter : RecyclerView.Adapter<TestAdapter.TestViewHolder>() {
 
     val data = listOf("a","b","c","d","e","f","g","h","i","j","k","l","m","n","f","g","h","i","j","k","l","m","n","f","g","h","i","j","k","l","m","n","f","g","h","i","j","k","l","m","n","f","g","h","i","j","k","l","m","n")
 

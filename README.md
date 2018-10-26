@@ -1,7 +1,7 @@
 # GroupingViewSample
 制作类似联系人页面所需要的Slider，和用来给recyclerview进行分组的ItemDecoration
 ## 最基本的效果图，效果图比较low
-<img src="image/screen.png" width="40%" height="40%"/>
+<img src="image/12.gif" width="40%" height="40%"/>
 
 ## 1. SliderView
 简介：这是一个列表view，继承自Linearlayout，可实现水平或垂直布局，主要作用是当手指划过或点击某个里面的item的时候会有相应的回调
@@ -102,4 +102,8 @@ slider.setItemListener(object : SliderView.ItemListener{
     abstract fun getGroupViewLayout(position: Int): Int
     //给分组标题绑定数据，groupView为这个需要绘制的view，position是当前组第一个item的位置
     abstract fun onBindGroupView(groupView: View,position: Int)
+    //是否显示吸顶效果的开关，默认显示（注：v1.0.2增加内容）
+    open fun shouldAnimation(): Boolean{
+            return true
+        }
 ```

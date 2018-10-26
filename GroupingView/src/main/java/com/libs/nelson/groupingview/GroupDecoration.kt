@@ -5,15 +5,16 @@ import android.graphics.Rect
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 
 
-abstract class GroupDecoration : androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
+abstract class GroupDecoration : RecyclerView.ItemDecoration() {
 
 
-    override fun onDraw(c: Canvas, parent: androidx.recyclerview.widget.RecyclerView, state: androidx.recyclerview.widget.RecyclerView.State) {
-        super.onDrawOver(c, parent, state)
+    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+        super.onDraw(c, parent, state)
 
-        val count = parent?.adapter?.itemCount!!
+        val count = parent.adapter?.itemCount!!
         if (count == 0) {
             return
         }
@@ -33,10 +34,13 @@ abstract class GroupDecoration : androidx.recyclerview.widget.RecyclerView.ItemD
 
     }
 
-    override fun onDrawOver(c: Canvas, parent: androidx.recyclerview.widget.RecyclerView, state: androidx.recyclerview.widget.RecyclerView.State) {
+    override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
+        if(!shouldAnimation()){
+            return
+        }
         val layoutManager = parent.layoutManager
-        if(layoutManager is androidx.recyclerview.widget.LinearLayoutManager){
+        if(layoutManager is LinearLayoutManager){
             val firstVisiblePosition = layoutManager.findFirstVisibleItemPosition()
             val firstVisibleView = layoutManager.findViewByPosition(firstVisiblePosition)
 
@@ -51,9 +55,11 @@ abstract class GroupDecoration : androidx.recyclerview.widget.RecyclerView.ItemD
                 groupView.draw(c)
             }
         }
+
+
     }
 
-    private fun inflateGroupView(parent: androidx.recyclerview.widget.RecyclerView, groupViewLayout: Int): View {
+    private fun inflateGroupView(parent: RecyclerView, groupViewLayout: Int): View {
         val view = LayoutInflater.from(parent.context).inflate(groupViewLayout, parent, false)
         view.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
                 View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
@@ -61,12 +67,12 @@ abstract class GroupDecoration : androidx.recyclerview.widget.RecyclerView.ItemD
         return view
     }
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: androidx.recyclerview.widget.RecyclerView, state: androidx.recyclerview.widget.RecyclerView.State) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
-        val position = parent?.getChildAdapterPosition(view)
-        position?.let {
+        val position = parent.getChildAdapterPosition(view)
+        position.let {
             if (checkItemIsFirstOfGroup(position)) {
-                outRect?.top = inflateGroupView(parent, getGroupViewLayout(position)).measuredHeight
+                outRect.top = inflateGroupView(parent, getGroupViewLayout(position)).measuredHeight
             }
 
         }
@@ -78,6 +84,10 @@ abstract class GroupDecoration : androidx.recyclerview.widget.RecyclerView.ItemD
     abstract fun getGroupViewLayout(position: Int): Int
 
     abstract fun onBindGroupView(groupView: View,position: Int)
+
+    open fun shouldAnimation(): Boolean{
+        return true
+    }
 
 
 }

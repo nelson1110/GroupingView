@@ -20,13 +20,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.grouping_view)
 
-
         list.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         list.adapter = TestAdapter()
 
         list.addItemDecoration(object : GroupDecoration(){
             override fun onBindGroupView(groupView: View, position: Int) {
-                groupView.findViewById<TextView>(R.id.text).text = position.toString()
+                groupView.findViewById<TextView>(R.id.text).text = (position/3*3).toString()
             }
 
             override fun getGroupViewLayout(position: Int): Int {
@@ -34,7 +33,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun checkItemIsFirstOfGroup(position: Int): Boolean {
-                return position%2 == 0
+                return position%3 == 0
+            }
+
+            override fun shouldAnimation(): Boolean {
+                return true
             }
 
 
@@ -46,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
 
             override fun getItemDataList(): List<Any> {
-               return listOf("a","b","c","d","e","f","g","h","i")
+               return listOf("a","b","c","d","e","f","g","h","i","j","k","l","m","n","f","g")
             }
 
             override fun onBindItem(item: View, data: Any) {
