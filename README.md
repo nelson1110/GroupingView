@@ -1,5 +1,6 @@
 # GroupingViewSample
 制作类似联系人页面所需要的Slider，和用来给recyclerview进行分组的ItemDecoration
+[![](https://jitpack.io/v/nelson1110/GroupingView.svg)](https://jitpack.io/#nelson1110/GroupingView)
 ## 最基本的效果图，效果图比较low
 <img src="image/12.gif" width="40%" height="40%"/>
 
