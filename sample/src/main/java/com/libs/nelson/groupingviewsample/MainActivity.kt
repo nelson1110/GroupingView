@@ -36,9 +36,9 @@ class MainActivity : AppCompatActivity() {
                 return position%3 == 0
             }
 
-            override fun shouldAnimation(): Boolean {
-                return true
-            }
+//            override fun shouldAnimation(): Boolean {
+//                return true
+//            }
 
 
         })
